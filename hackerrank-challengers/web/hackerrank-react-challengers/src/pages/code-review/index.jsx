@@ -1,6 +1,6 @@
 import Link from "next/link";
-import FeedbackSystem from "../../components/FeedbackSystem";
 import "h8k-components";
+import FeedbackSystem from "@/src/components/FeedbackSystem";
 
 const CodeReviewFeedback = () => {
     const title = "Code Review Feedback";

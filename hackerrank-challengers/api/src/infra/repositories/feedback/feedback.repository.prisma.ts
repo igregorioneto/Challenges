@@ -36,12 +36,29 @@ export class FeedbackRepositoryPrisma implements FeedbackGatway {
         });
     }
 
-    increaseUpvotes(): Promise<void> {
-        throw new Error("Method not implemented.");
+    public async getById(id: string): Promise<Feedback | null> {
+        const feedback = await this.prismaClient.feedback.findFirst({ where: { id } });
+
+        return feedback ? Feedback.with({
+            id: feedback.id,
+            title: feedback.title,
+            upvotes: feedback.upvotes,
+            downvotes: feedback.downvotes
+        }) : null;
     }
 
-    increaseDownvotes(): Promise<void> {
-        throw new Error("Method not implemented.");
+    public async increaseUpvotes(feedback: Feedback): Promise<void> { 
+        await this.prismaClient.feedback.update({
+            where: { id: feedback.id },
+            data: { upvotes: feedback.upvotes }
+        });
+    }
+
+    public async increaseDownvotes(feedback: Feedback): Promise<void> {
+        await this.prismaClient.feedback.update({
+            where: { id: feedback.id },
+            data: { downvotes: feedback.downvotes }
+        })
     }
     
 }

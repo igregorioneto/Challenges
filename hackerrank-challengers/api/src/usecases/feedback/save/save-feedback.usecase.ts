@@ -14,6 +14,10 @@ export class SaveFeedbackUsecase implements Usecase<CreateFeedbackInputDto, Crea
     
     private constructor(private readonly feedbackGatway: FeedbackGatway) {}
 
+    public static create(feedbackGatway: FeedbackGatway) {
+        return new SaveFeedbackUsecase(feedbackGatway);
+    }
+
     async execute({ title }: CreateFeedbackInputDto): Promise<CreateFeedbackOutputDto> {
         const feedback = Feedback.create(title);
 

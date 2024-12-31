@@ -16,6 +16,10 @@ export type ListFeedbackOutputDto = {
 export class ListFeedbackUsecase implements Usecase<ListFeedbackInputDto, ListFeedbackOutputDto> {
     
     private constructor(private readonly feedbackGatway: FeedbackGatway) {}
+
+    public static create(feedbackGatway: FeedbackGatway) {
+        return new ListFeedbackUsecase(feedbackGatway);
+    }
     
     async execute(): Promise<ListFeedbackOutputDto> {
         const feedbacks = await this.feedbackGatway.list();

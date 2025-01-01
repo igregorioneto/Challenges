@@ -5,8 +5,8 @@ const ArtigleSorting = ({ articles: initialArticles }) => {
     const [articles, setArticles] = useState(initialArticles);
 
     useEffect(() => {
-      setArticles(initialArticles)
-    }, [initialArticles])
+      handleMostUpvoted()
+    }, []);
   
     const handleMostUpvoted = () => {
       // Logic for most upvoted articles

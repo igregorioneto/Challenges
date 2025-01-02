@@ -1,4 +1,4 @@
-import ArtigleSorting from "@/src/components/ArticleSorting";
+import ArtigleSorting from "@/src/components/ArticlesComponents/ArticleSorting";
 
 export const ARTICLES_DATA = [
     {

@@ -14,7 +14,7 @@ const Articles = ({ articles = [] }) => {
                 <tr 
                     className={`text-left ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`} 
                     data-testid="article" 
-                    key={i}
+                    key={article.id || i}
                 >
                     <td className="px-4 py-2 border border-gray-200" data-testid="article-title">
                     {article.title}
@@ -23,7 +23,7 @@ const Articles = ({ articles = [] }) => {
                     {article.upvotes}
                     </td>
                     <td className="px-4 py-2 border border-gray-200" data-testid="article-date">
-                    {article.date}
+                    {new Date(article.date).toLocaleDateString()}
                     </td>
                 </tr>
                 ))}

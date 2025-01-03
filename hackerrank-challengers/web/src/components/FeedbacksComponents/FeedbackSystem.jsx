@@ -12,7 +12,7 @@ const FeedbackSystem = () => {
 
   async function fetchFeedbacks() {
     try {
-      const response = await fetch(`http://localhost:3002/feedbacks`);
+      const response = await fetch(`http://localhost:3003/feedbacks`);
 
       if (!response.ok) {
         throw new Error(`Http error! Status: ${response.status}`);

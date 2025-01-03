@@ -10,6 +10,7 @@ const Layout = ({ children }) => {
         { id: 2, title: "Article Sorting", path: "/article-sorting", icon: "article-sorting-icon" },
         { id: 3, title: "Contact-Form", path: "/contact-form", icon: "contact-form-icon" },
         { id: 4, title: "Patient Medical Records", path: "/patient-medical-records", icon: "patient-medical-records-icon" },
+        { id: 5, title: "Bloc Post", path: "/blog-post", icon: "blog-post-icon" },
     ];
 
     const handleTitle = (menuId) => {

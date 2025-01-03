@@ -21,11 +21,8 @@ const ArtigleSorting = ({ articles: initialArticles }) => {
     };
     return (
         <>
-        <header className="bg-gray-800 text-white text-lg font-bold p-4">
-          Sorting Articles
-        </header>
         <div className="App">
-          <div className="flex flex-row items-center justify-center my-5 space-x-4">
+          <div className="flex flex-row items-center justify-center my-3 space-x-4">
             <label className="text-sm uppercase font-light">
               Sort By
             </label>

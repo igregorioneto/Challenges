@@ -31,13 +31,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <header className="bg-gray-800 text-white py-4 px-6">
-        <h1 className="text-xl font-bold">Contact Form</h1>
-      </header>
-
       <div className="App p-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">Contact Form</h1>
-
         <form 
             onSubmit={handleSubmit}
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-4"

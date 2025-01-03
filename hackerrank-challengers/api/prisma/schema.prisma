@@ -18,3 +18,12 @@ model Feedback {
 
   @@map("feedback")
 }
+
+model Article {
+  id String @id
+  title String
+  upvotes Int @default(0)
+  date DateTime
+
+  @@map("article")
+}

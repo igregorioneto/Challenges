@@ -1,6 +1,6 @@
 import { Feedback } from "../entity/feedback";
 
-export interface FeedbackGatway {
+export interface FeedbackGateway {
     save(feedback: Feedback): Promise<void>;
     list(): Promise<Feedback[]>;
     getById(id: string): Promise<Feedback | null>;

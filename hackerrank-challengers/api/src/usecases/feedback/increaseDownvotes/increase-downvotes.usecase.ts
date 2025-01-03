@@ -1,4 +1,4 @@
-import { FeedbackGatway } from "../../../domain/feedback/gateway/feedback.gatway";
+import { FeedbackGateway } from "../../../domain/feedback/gateway/feedback.gateway";
 import { Usecase } from "../../usecase";
 
 export type IncreaseDownvotesInputDto = {
@@ -8,9 +8,9 @@ export type IncreaseDownvotesInputDto = {
 export type IncreateDownvotesOutputDto = void;
 
 export class IncreaseDownvotesUsecase implements Usecase<IncreaseDownvotesInputDto, IncreateDownvotesOutputDto> {
-    private constructor(private readonly feedbackGateway: FeedbackGatway) {}
+    private constructor(private readonly feedbackGateway: FeedbackGateway) {}
 
-    public static create(feedbackGateway: FeedbackGatway) {
+    public static create(feedbackGateway: FeedbackGateway) {
         return new IncreaseDownvotesUsecase(feedbackGateway);
     }
     

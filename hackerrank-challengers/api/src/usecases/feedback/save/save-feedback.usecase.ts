@@ -1,5 +1,5 @@
 import { Feedback } from "../../../domain/feedback/entity/feedback";
-import { FeedbackGatway } from "../../../domain/feedback/gateway/feedback.gatway";
+import { FeedbackGateway } from "../../../domain/feedback/gateway/feedback.gateway";
 import { Usecase } from "../../usecase";
 
 export type CreateFeedbackInputDto = {
@@ -12,9 +12,9 @@ export type CreateFeedbackOutputDto = {
 
 export class SaveFeedbackUsecase implements Usecase<CreateFeedbackInputDto, CreateFeedbackOutputDto>{
     
-    private constructor(private readonly feedbackGatway: FeedbackGatway) {}
+    private constructor(private readonly feedbackGatway: FeedbackGateway) {}
 
-    public static create(feedbackGatway: FeedbackGatway) {
+    public static create(feedbackGatway: FeedbackGateway) {
         return new SaveFeedbackUsecase(feedbackGatway);
     }
 

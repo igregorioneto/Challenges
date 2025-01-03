@@ -1,8 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { Feedback } from "../../../domain/feedback/entity/feedback";
-import { FeedbackGatway } from "../../../domain/feedback/gateway/feedback.gatway";
+import { FeedbackGateway } from "../../../domain/feedback/gateway/feedback.gateway";
 
-export class FeedbackRepositoryPrisma implements FeedbackGatway {
+export class FeedbackRepositoryPrisma implements FeedbackGateway {
 
     private constructor(private readonly prismaClient: PrismaClient) {}
 

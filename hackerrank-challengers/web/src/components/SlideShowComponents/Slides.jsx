@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Slides = ({ slides }) => {
-    const [slidePosition, setSlidePosition] = useState(0);
+  const [slidePosition, setSlidePosition] = useState(0);
 
   const handleNext = () => {
     if (slidePosition < slides.length - 1) {

@@ -11,6 +11,7 @@ const Layout = ({ children }) => {
         { id: 3, title: "Contact-Form", path: "/contact-form", icon: "contact-form-icon" },
         { id: 4, title: "Patient Medical Records", path: "/patient-medical-records", icon: "patient-medical-records-icon" },
         { id: 5, title: "Bloc Post", path: "/blog-post", icon: "blog-post-icon" },
+        { id: 6, title: "Slide Show", path: "/slide-show", icon: "slide-show-icon" },
     ];
 
     const handleTitle = (menuId) => {

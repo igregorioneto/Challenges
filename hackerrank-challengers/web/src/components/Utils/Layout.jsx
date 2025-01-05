@@ -12,6 +12,7 @@ const Layout = ({ children }) => {
         { id: 4, title: "Patient Medical Records", path: "/patient-medical-records", icon: "patient-medical-records-icon" },
         { id: 5, title: "Bloc Post", path: "/blog-post", icon: "blog-post-icon" },
         { id: 6, title: "Slide Show", path: "/slide-show", icon: "slide-show-icon" },
+        { id: 7, title: "Employee Validation", path: "/employee-validation", icon: "employee-validation-icon" },
     ];
 
     const handleTitle = (menuId) => {

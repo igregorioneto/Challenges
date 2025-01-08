@@ -1,70 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useFeedback } from "./contexts/FeedbackContext";
 
 const baseURL = process.env.REACT_APP_URL_BASE;
 
 const FeedbackSystem = () => {
-  const [feedback, setFeedback] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchFeedbacks();
-  }, []);
-
-  async function fetchFeedbacks() {
-    try {
-      const response = await fetch(`http://localhost:3003/feedbacks`);
-
-      if (!response.ok) {
-        throw new Error(`Http error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setFeedback(data.feedbacks);
-      setError(null);
-    } catch (error) {
-      setFeedback([]);
-      setError('Falha ao carregar feedbacks. Por favor, tente novamente.')
-    }
-  }
-
-  function handleUpvotes(id) {
-    //const updatedFeedback = feedback.map((feedback, i) => i === index ? {...feedback, upvotes: feedback.upvotes + 1} : feedback);
-    //setFeedback(updatedFeedback);
-    fetch(`http://localhost:3002/feedbacks/upvotes/${id}`, { method: 'POST' })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Http error! Status: ${response.status}`);
-        }
-
-        return response.json();
-      })
-      .then((data) => {
-        fetchFeedbacks();
-      })
-      .catch((error) => {
-        console.error('Erro ao enviar upvote:', error);
-        setError('Falha ao enviar upvote');
-      });
-  }
-
-  function handleDownupvotes(id) {
-    //const updatedFeedback = feedback.map((feedback, i) => i === index ? { ...feedback, downvotes: feedback.downvotes + 1 } : feedback);
-    //setFeedback(updatedFeedback);
-    fetch(`http://localhost:3002/feedbacks/downvotes/${id}`, { method: 'POST' })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Http error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        fetchFeedbacks();
-      })
-      .catch((error) => {
-        console.error('Erro ao enviar downvotes:', error);
-        setError('Falha ao enviar downvotes');
-      });
-  }
+  const { feedback, error, handleUpvotes, handleDownupvotes } = useFeedback();
 
   return (
     <div className="mx-auto text-center max-w-5xl">

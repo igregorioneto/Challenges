@@ -1,4 +1,5 @@
 import ArtigleSorting from "@/src/components/ArticlesComponents/ArticleSorting";
+import { ArticleProvider } from "@/src/components/ArticlesComponents/contexts/ArticleContext";
 
 export const ARTICLES_DATA = [
     {
@@ -40,9 +41,9 @@ export const ARTICLES_DATA = [
 
 const ArticleSortingPage = () => {
     return (
-        <div>
-            <ArtigleSorting articles={ARTICLES_DATA} />
-        </div>
+        <ArticleProvider>
+            <ArtigleSorting />
+        </ArticleProvider>
     )
 }
 

@@ -1,39 +1,9 @@
 import { useEffect, useState } from "react";
 import Articles from "./Articles";
+import { useArticle } from "./contexts/ArticleContext";
 
-const ArtigleSorting = ({ articles: initialArticles }) => {
-    const [articles, setArticles] = useState(initialArticles);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-      fetchArticles()
-    }, []);
-
-    const fetchArticles = async (query = "") => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(`http://localhost:3003/articles${query}`);
-
-        if (!response.ok) {
-          throw new Error(`Http error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setArticles(data.articles);
-        setError(null);
-      } catch (error) {
-        setArticles([]);
-        setError('Error in requesting articles. Please try again.');
-      } finally {
-        setLoading(false);
-      }
-    }
-  
-    const handleMostUpvoted = () => fetchArticles("?upvotes=true");
-  
-    const handleMostRecent = () => fetchArticles("?date=true");
+const ArtigleSorting = () => {
+    const { articles, loading, error, handleMostUpvoted, handleMostRecent } = useArticle();
 
     return (
         <>

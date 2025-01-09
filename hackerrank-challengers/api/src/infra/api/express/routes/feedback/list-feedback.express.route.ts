@@ -32,7 +32,11 @@ export class ListFeedbackExpressRoute implements Route {
 
             const responseBody = this.present(output);
 
-            response.status(200).json(responseBody);
+            response.status(200).json({ 
+                message: 'Feedbacks list successfully',
+                success: true,
+                body: responseBody 
+            });
         }
     }
 

@@ -1,15 +1,20 @@
 import { ApiExpress } from "./infra/api/express/api.express";
 import { ListArticleExpressRoute } from "./infra/api/express/routes/article/list-article.express.route";
 import { SaveArticleExpressRoute } from "./infra/api/express/routes/article/save-article.express.route";
+import { ListContactExpressRoute } from "./infra/api/express/routes/contact/list-contact.express.route";
+import { SaveContactExpressRoute } from "./infra/api/express/routes/contact/save-contact.express.route";
 import { IncreaseDownvotesFeedbackExpressRoute } from "./infra/api/express/routes/feedback/increase-downvotes-feedback.express.route";
 import { IncreaseUpvotesFeedbackExpressRoute } from "./infra/api/express/routes/feedback/increase-upvotes-feedback.express.route";
 import { ListFeedbackExpressRoute } from "./infra/api/express/routes/feedback/list-feedback.express.route";
 import { SaveFeedbackExpressRoute } from "./infra/api/express/routes/feedback/save-feedback.express.route";
 import { ArticleRepositoryPrisma } from "./infra/repositories/article/article.repository.prisma";
+import { ContactRepositoryPrisma } from "./infra/repositories/contact/contact.repository.prisma";
 import { FeedbackRepositoryPrisma } from "./infra/repositories/feedback/feedback.repository.prisma";
 import { prisma } from "./package/prisma/prisma";
 import { ListArticleUsecase } from "./usecases/article/list/list-article.usecase";
 import { SaveArticleUsecase } from "./usecases/article/save/save-article.usecase";
+import { ListContactUsecase } from "./usecases/contact/list/list-contact.usecase";
+import { SaveContactUsecase } from "./usecases/contact/save/save-contact.usecase";
 import { IncreaseDownvotesUsecase } from "./usecases/feedback/increaseDownvotes/increase-downvotes.usecase";
 import { IncreaseUpvotesUsecase } from "./usecases/feedback/increaseUpvotes/increase-upvotes.usecase";
 import { ListFeedbackUsecase } from "./usecases/feedback/list/list-feedback.usecase";
@@ -44,6 +49,16 @@ function main() {
     const saveArticleRoute = SaveArticleExpressRoute.create(saveArticleUsecase);
     const listArticleRoute = ListArticleExpressRoute.create(listArticleUsecase);
 
+
+    // Contacts
+    const aRepositoryContact = ContactRepositoryPrisma.create(prisma);
+    
+    const saveContactUsecase = SaveContactUsecase.create(aRepositoryContact);
+    const listContactUsecase = ListContactUsecase.create(aRepositoryContact);
+
+    const saveContactRoute = SaveContactExpressRoute.create(saveContactUsecase);
+    const listContactRoute = ListContactExpressRoute.create(listContactUsecase);
+
     const api = ApiExpress.create([
         // Feedbacks
         saveRoute,
@@ -53,9 +68,13 @@ function main() {
 
         // Articles
         saveArticleRoute,
-        listArticleRoute
+        listArticleRoute,
+
+        // Contacts
+        saveContactRoute,
+        listContactRoute
     ]);
-    const port = 3003;
+    const port = Number(process.env.PORT) || 3002;
     api.start(port);
 }
 

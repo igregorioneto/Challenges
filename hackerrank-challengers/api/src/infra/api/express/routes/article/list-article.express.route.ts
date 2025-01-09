@@ -45,11 +45,11 @@ export class ListArticleExpressRoute implements Route {
                 if (error instanceof Error) {
                     response
                         .status(500)
-                        .json({ message: error.message, status: false });
+                        .json({ message: error.message, success: false });
                 } else {
                     response
                         .status(500)
-                        .json({ message: 'An unknown error occurred', status: false });
+                        .json({ message: 'An unknown error occurred', success: false });
                 }
             }
         }

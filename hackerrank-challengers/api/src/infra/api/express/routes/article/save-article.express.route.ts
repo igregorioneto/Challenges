@@ -31,7 +31,7 @@ export class SaveArticleExpressRoute implements Route {
             const { title, upvotes } = request.body as SaveArticleInputDto;
             try {
                 if (!title || !upvotes) {
-                    response.status(404).json({ message: 'Title or Upvotes not found', status: false })
+                    response.status(404).json({ message: 'Title or Upvotes not found', success: false })
                     return;
                 }
 
@@ -40,16 +40,16 @@ export class SaveArticleExpressRoute implements Route {
 
                 const responseBody = this.present(output);
 
-                response.status(201).json({ body: responseBody, status: true });
+                response.status(201).json({ body: responseBody, success: true });
             } catch (error) {
                 if (error instanceof Error) {
                     response
                         .status(500)
-                        .json({ message: error.message, status: false })
+                        .json({ message: error.message, success: false })
                 } else {
                     response
                         .status(500)
-                        .json({ message: 'An unknown error occurred', status: false })
+                        .json({ message: 'An unknown error occurred', success: false })
                 }
             }
         }

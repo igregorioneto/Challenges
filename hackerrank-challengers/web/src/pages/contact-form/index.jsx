@@ -8,16 +8,13 @@ const ContactForm = () => {
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();    
-    // TODO: Add logic to validate inputs and display submitted data    
-    // HINT: You can use the setError function
+    e.preventDefault();
     if (!name || !email || !message) {
       setError("All fields are required.");
       setSubmittedData(null);
       return;
     }
-
-    // HINT: You can use the setSubmittedData function as below
+    
     setSubmittedData({ name, email, message });
     handleInputsValues();
   };

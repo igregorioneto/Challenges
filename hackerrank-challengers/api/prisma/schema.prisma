@@ -27,3 +27,12 @@ model Article {
 
   @@map("article")
 }
+
+model Contact {
+  id String @id
+  name String
+  email String @unique
+  message String
+
+  @@map("contact")
+}

@@ -34,7 +34,11 @@ export class SaveFeedbackExpressRoute implements Route {
 
             const responseBody = this.present(output);
 
-            response.status(201).json(responseBody);
+            response.status(201).json({ 
+                message: 'Feedback created with successfully',
+                success: true,
+                body: responseBody
+            });
         }
     }
 

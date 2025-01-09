@@ -22,7 +22,7 @@ export class IncreaseDownvotesFeedbackExpressRoute implements Route {
             const { id } = request.params;
             try {
                 if (!id) {
-                    response.status(404).json({ message: 'ID params not found', status: false });
+                    response.status(404).json({ message: 'ID params not found', success: false });
                 }
 
                 const input: IncreaseDownvotesInputDto = {
@@ -33,17 +33,17 @@ export class IncreaseDownvotesFeedbackExpressRoute implements Route {
 
                 response
                     .status(200)
-                    .json({ message: 'Increase Downvotes successfully', status: true })
+                    .json({ message: 'Increase Downvotes successfully', success: true })
                     .send();
             } catch (error: unknown) {
                 if (error instanceof Error) {
                     response
                         .status(500)
-                        .json({ message: error.message, status: false });
+                        .json({ message: error.message, success: false });
                 } else {
                     response
                         .status(500)
-                        .json({ message: 'An unknown error occurred', status: false });
+                        .json({ message: 'An unknown error occurred', success: false });
                 }
             }
         }

@@ -33,7 +33,6 @@ export class SaveContactExpressRoute implements Route {
         return async (request: Request, response: Response) => {
             const { name, email, message } = request.body as SaveContactInputDto;
             try {
-                console.log(name, email, message)
                 if (!name || !email || !message) {
                     response.status(404).json({ message: 'Name, Email or Message not found', success: false });
                     return;

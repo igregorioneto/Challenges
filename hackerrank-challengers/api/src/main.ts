@@ -8,6 +8,7 @@ import { IncreaseUpvotesFeedbackExpressRoute } from "./infra/api/express/routes/
 import { ListFeedbackExpressRoute } from "./infra/api/express/routes/feedback/list-feedback.express.route";
 import { SaveFeedbackExpressRoute } from "./infra/api/express/routes/feedback/save-feedback.express.route";
 import { MenuListExpressRoute } from "./infra/api/express/routes/menu/menu-list.express.route";
+import { MenuSaveInLotExpressRoute } from "./infra/api/express/routes/menu/menu-save-in-lot.express.route";
 import { MenuSaveExpressRoute } from "./infra/api/express/routes/menu/menu-save.express.route";
 import { ArticleRepositoryPrisma } from "./infra/repositories/article/article.repository.prisma";
 import { ContactRepositoryPrisma } from "./infra/repositories/contact/contact.repository.prisma";
@@ -23,6 +24,7 @@ import { IncreaseUpvotesUsecase } from "./usecases/feedback/increaseUpvotes/incr
 import { ListFeedbackUsecase } from "./usecases/feedback/list/list-feedback.usecase";
 import { SaveFeedbackUsecase } from "./usecases/feedback/save/save-feedback.usecase";
 import { MenuListUsecase } from "./usecases/menu/list/menu-list.usecase";
+import { MenuSaveInLotUsecase } from "./usecases/menu/manu-save-in-lot/manu-save-in-lot.usecase";
 import { MenuSaveUsecase } from "./usecases/menu/save/menu-save.usecase";
 
 function main() {
@@ -69,9 +71,11 @@ function main() {
     const aRepositoryMenu = MenuRepositoryPrisma.create(prisma);
 
     const saveMenuUsecase = MenuSaveUsecase.create(aRepositoryMenu);
+    const saveMenuInLotUsecase = MenuSaveInLotUsecase.create(aRepositoryMenu);
     const listMenuUsecase = MenuListUsecase.create(aRepositoryMenu);
 
     const saveMenuRoute = MenuSaveExpressRoute.create(saveMenuUsecase);
+    const saveMenuInLotRoute = MenuSaveInLotExpressRoute.create(saveMenuInLotUsecase);
     const listMenuRoute = MenuListExpressRoute.create(listMenuUsecase);
 
     const api = ApiExpress.create([
@@ -91,6 +95,7 @@ function main() {
 
         // Menu
         saveMenuRoute,
+        saveMenuInLotRoute,
         listMenuRoute
     ]);
     const port = Number(process.env.PORT) || 3002;

@@ -36,3 +36,12 @@ model Contact {
 
   @@map("contact")
 }
+
+model Menu {
+  id String @id
+  title String
+  path String
+  icon String
+
+  @@map("menu")
+}

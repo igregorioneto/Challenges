@@ -7,9 +7,12 @@ import { IncreaseDownvotesFeedbackExpressRoute } from "./infra/api/express/route
 import { IncreaseUpvotesFeedbackExpressRoute } from "./infra/api/express/routes/feedback/increase-upvotes-feedback.express.route";
 import { ListFeedbackExpressRoute } from "./infra/api/express/routes/feedback/list-feedback.express.route";
 import { SaveFeedbackExpressRoute } from "./infra/api/express/routes/feedback/save-feedback.express.route";
+import { MenuListExpressRoute } from "./infra/api/express/routes/menu/menu-list.express.route";
+import { MenuSaveExpressRoute } from "./infra/api/express/routes/menu/menu-save.express.route";
 import { ArticleRepositoryPrisma } from "./infra/repositories/article/article.repository.prisma";
 import { ContactRepositoryPrisma } from "./infra/repositories/contact/contact.repository.prisma";
 import { FeedbackRepositoryPrisma } from "./infra/repositories/feedback/feedback.repository.prisma";
+import { MenuRepositoryPrisma } from "./infra/repositories/menu/menu.repository.prispa";
 import { prisma } from "./package/prisma/prisma";
 import { ListArticleUsecase } from "./usecases/article/list/list-article.usecase";
 import { SaveArticleUsecase } from "./usecases/article/save/save-article.usecase";
@@ -19,6 +22,8 @@ import { IncreaseDownvotesUsecase } from "./usecases/feedback/increaseDownvotes/
 import { IncreaseUpvotesUsecase } from "./usecases/feedback/increaseUpvotes/increase-upvotes.usecase";
 import { ListFeedbackUsecase } from "./usecases/feedback/list/list-feedback.usecase";
 import { SaveFeedbackUsecase } from "./usecases/feedback/save/save-feedback.usecase";
+import { MenuListUsecase } from "./usecases/menu/list/menu-list.usecase";
+import { MenuSaveUsecase } from "./usecases/menu/save/menu-save.usecase";
 
 function main() {
 
@@ -59,6 +64,16 @@ function main() {
     const saveContactRoute = SaveContactExpressRoute.create(saveContactUsecase);
     const listContactRoute = ListContactExpressRoute.create(listContactUsecase);
 
+
+    // Menu
+    const aRepositoryMenu = MenuRepositoryPrisma.create(prisma);
+
+    const saveMenuUsecase = MenuSaveUsecase.create(aRepositoryMenu);
+    const listMenuUsecase = MenuListUsecase.create(aRepositoryMenu);
+
+    const saveMenuRoute = MenuSaveExpressRoute.create(saveMenuUsecase);
+    const listMenuRoute = MenuListExpressRoute.create(listMenuUsecase);
+
     const api = ApiExpress.create([
         // Feedbacks
         saveRoute,
@@ -72,7 +87,11 @@ function main() {
 
         // Contacts
         saveContactRoute,
-        listContactRoute
+        listContactRoute,
+
+        // Menu
+        saveMenuRoute,
+        listMenuRoute
     ]);
     const port = Number(process.env.PORT) || 3002;
     api.start(port);
